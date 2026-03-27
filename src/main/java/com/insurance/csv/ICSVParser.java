@@ -5,19 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parses a CSV file into a list of rows.
- * Each row is represented as a Map from column header to cell value.
- * The first line of the CSV is treated as the header row.
+ * Parses a CSV file into a list of rows. Each row is a Map from
+ * column header name to cell value.
+ * example input: "James", "Butt", “Chemel, James L Cpa", "New Orleans"
+ * example output: [{first_name=James, last_name=Butt, Company_name=James L Cpa, location=New Orleans}
  */
 public interface ICSVParser {
 
   /**
-   * Parses the CSV file at the given path.
-   *
-   * @param filePath absolute or relative path to the CSV file
-   * @return a List of Maps, one Map per data row (not including the header);
-   *         keys are the column headers (e.g. "first_name", "email"),
-   *         values are the cell contents with surrounding quotes stripped
+   * @param filePath path to the CSV file
+   * @return one Map per data row; keys are header names, values have quotes stripped
    * @throws IOException if the file cannot be read
    */
   List<Map<String, String>> parse(String filePath) throws IOException;
